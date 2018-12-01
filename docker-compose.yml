@@ -6,7 +6,6 @@ services:
     build: .
     ports:
       - "25565:25565"
-      - "25575:25575"
     volumes:
       - ./volumes/mods:/minecraft/mods
       - ./volumes/config:/minecraft/config
@@ -15,3 +14,4 @@ services:
       - ./volumes/ops.json:/minecraft/ops.json
       - ./volumes/server.properties:/minecraft/server.properties
       - ./volumes/whitelist.json:/minecraft/whitelist.json
+      - ./volumes/world:/minecraft/world
