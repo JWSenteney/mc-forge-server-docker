@@ -1,0 +1,17 @@
+version: '2'
+
+services:
+  forge:
+    image: mc-forge-server-1.7.10
+    build: .
+    ports:
+      - "25565:25565"
+      - "25575:25575"
+    volumes:
+      - ./mods:/minecraft/mods
+      - ./config:/minecraft/config
+      - ./banned-ips.json:/minecraft/banned-ips.json
+      - ./baned-players.json:/minecraft/banned-players.json
+      - ./ops.json:/minecraft/ops.json
+      - ./server.properties:/minecraft/server.properties
+      - ./whitelist.json:/minecraft/whitelist.json
