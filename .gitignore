@@ -1,5 +1,5 @@
-config
-mods
+volumes/config
+volumes/mods
 
 # Created by https://www.gitignore.io/api/jetbrains+all,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=jetbrains+all,visualstudiocode
