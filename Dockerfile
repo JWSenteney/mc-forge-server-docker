@@ -6,9 +6,11 @@ RUN mkdir /minecraft
 
 WORKDIR /minecraft
 
+ENV MINECRAFT_VERSION 1.7.10
+
 # initialize config files
 COPY image tmp
-RUN tmp/setup-files.sh && rm -r tmp
+RUN tmp/setup-files${MINECRAFT_VERSION}.sh && rm -r tmp
 
 # install minecraft forge
 ENV FORGE_VERSION 1.7.10-10.13.4.1614-1.7.10
