@@ -10,7 +10,7 @@ services:
       - ./volumes/mods:/minecraft/mods
       - ./volumes/config:/minecraft/config
       - ./volumes/banned-ips.json:/minecraft/banned-ips.json
-      - ./volumes/baned-players.json:/minecraft/banned-players.json
+      - ./volumes/banned-players.json:/minecraft/banned-players.json
       - ./volumes/ops.json:/minecraft/ops.json
       - ./volumes/server.properties:/minecraft/server.properties
       - ./volumes/whitelist.json:/minecraft/whitelist.json
