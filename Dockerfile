@@ -11,13 +11,17 @@ COPY image tmp
 RUN tmp/setup-files.sh && rm -r tmp
 
 # install minecraft forge
-RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.4.1614-1.7.10/forge-1.7.10-10.13.4.1614-1.7.10-installer.jar && \
-    java -jar forge-1.7.10-10.13.4.1614-1.7.10-installer.jar --installServer && \
-    rm forge-1.7.10-10.13.4.1614-1.7.10-installer.jar forge-1.7.10-10.13.4.1614-1.7.10-installer.jar.log
+ENV FORGE_VERSION 1.7.10-10.13.4.1614-1.7.10
+RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
+    java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
+    rm forge-${FORGE_VERSION}-installer.jar forge-${FORGE_VERSION}-installer.jar.log
 
 # install rcon-cli
 RUN wget https://github.com/itzg/rcon-cli/releases/download/1.4.0/rcon-cli_1.4.0_linux_amd64.tar.gz && \
     tar -x -C /usr/local/bin -f rcon-cli_1.4.0_linux_amd64.tar.gz rcon-cli && \
     rm rcon-cli_1.4.0_linux_amd64.tar.gz
 
-CMD [ "java", "-jar", "forge-1.7.10-10.13.4.1614-1.7.10-universal.jar" ]
+ENV JAVA_ARGS -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.port=1098 -Dcom.sun.management.jmxremote.rmi.port=1098 -Djava.rmi.server.hostname=127.0.0.1 -XX:HeapDumpPath=/minecraft/crash-reports/crash-heap.dump -XX:+HeapDumpOnOutOfMemoryError
+ENV JAVA_MEMORY_ARGS -Xms4G -Xmx4G
+
+CMD java ${JAVA_ARGS} ${JAVA_MEMORY_ARGS} -jar forge-${FORGE_VERSION}-universal.jar
