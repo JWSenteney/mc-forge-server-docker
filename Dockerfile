@@ -2,7 +2,7 @@ FROM openjdk:8-jre-alpine
 
 EXPOSE 25565
 
-RUN mkdir /minecraft && \
+RUN mkdir -p /minecraft/tmp && \
     cd /minecraft && \
     wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/1.7.10-10.13.4.1614-1.7.10/forge-1.7.10-10.13.4.1614-1.7.10-installer.jar && \
     java -jar forge-1.7.10-10.13.4.1614-1.7.10-installer.jar --installServer && \
@@ -12,6 +12,8 @@ RUN mkdir /minecraft && \
 
 WORKDIR /minecraft
 
-COPY image/eula.txt eula.txt 
+COPY image tmp
+
+RUN tmp/setup-files.sh
 
 CMD [ "java", "-jar", "forge-1.7.10-10.13.4.1614-1.7.10-universal.jar" ]

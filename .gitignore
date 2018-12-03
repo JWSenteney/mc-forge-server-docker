@@ -1,6 +1,4 @@
-volumes/config
-volumes/mods
-volumes/world
+volumes
 
 # Created by https://www.gitignore.io/api/jetbrains+all,visualstudiocode
 # Edit at https://www.gitignore.io/?templates=jetbrains+all,visualstudiocode
