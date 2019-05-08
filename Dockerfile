@@ -6,14 +6,14 @@ RUN mkdir /minecraft
 
 WORKDIR /minecraft
 
-ENV MINECRAFT_VERSION 1.12.2
+ARG MINECRAFT_VERSION=1.12.2
 
 # initialize config files
 COPY image tmp
 RUN tmp/setup-files${MINECRAFT_VERSION}.sh && rm -r tmp
 
 # install minecraft forge
-ENV FORGE_VERSION 1.12.2-14.23.5.2836
+ARG FORGE_VERSION=1.12.2-14.23.5.2836
 RUN wget https://files.minecraftforge.net/maven/net/minecraftforge/forge/${FORGE_VERSION}/forge-${FORGE_VERSION}-installer.jar && \
     java -jar forge-${FORGE_VERSION}-installer.jar --installServer && \
     rm forge-${FORGE_VERSION}-installer.jar forge-${FORGE_VERSION}-installer.jar.log
