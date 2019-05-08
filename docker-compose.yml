@@ -2,8 +2,7 @@ version: '3'
 
 services:
   forge:
-    image: mc-forge-server-1.12.2
-    build: .
+    image: jwsenteney/mc-forge-server
     ports:
       - "25565:25565"
     environment:
